@@ -1,0 +1,75 @@
+/* Base X Tech tokens — local fonts + colors */
+
+@font-face {
+  font-family: 'TWK Everett';
+  src: url('/fonts/TWKEverett-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Everett';
+  src: url('/fonts/TWKEverett-RegularItalic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TWK Everett';
+  src: url('/fonts/TWKEverett-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thunder';
+  src: url('/fonts/Thunder-BoldLC.woff2') format('woff2'),
+       url('/fonts/Thunder-BoldLC.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('/fonts/PPEditorialNew-Ultralight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bx-black: #1D1E20;
+  --bx-ink: #0D0515;
+  --bx-bone: #FAFAFA;
+  --bx-white: #FFFFFF;
+  --bx-grey-90: #1E1E1E;
+  --bx-grey-60: #6D6D6D;
+  --bx-grey-40: #C4C4C4;
+  --bx-grey-30: #DADADA;
+  --bx-grey-20: #F0F0F0;
+  --bx-grey-10: #F3F3F3;
+  --bx-green: #81A13F;
+  --bx-green-light: #95BF46;
+  --bx-green-deep: #5E8E3E;
+
+  --font-display: 'Thunder', 'Bebas Neue', 'Oswald', sans-serif;
+  --font-body: 'TWK Everett', 'Inter', system-ui, sans-serif;
+  --font-editorial: 'PP Editorial New', 'Cormorant Garamond', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+::-webkit-scrollbar { height: 6px; width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(13,5,21,0.2); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(13,5,21,0.4); }
