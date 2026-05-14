@@ -4,7 +4,7 @@ import { PROFILES, PROFILE_LABELS, VIEW_KINDS, VIEW_LABELS, DESIGN } from '../li
 import { getCumulative, pct, buildPeriods } from '../lib/aggregation.js';
 import { fmtISO, fmtShort } from '../lib/dates.js';
 import { loadRecords, saveRecords } from '../lib/storage.js';
-import { pushRecord as pushToSheets } from '../lib/sheets.js';
+import { pushRecord as pushToSheets, pullRecords } from '../lib/sheets.js';
 import { Eyebrow, Label, Btn, IconArrow } from './primitives.jsx';
 import { Segmented } from './Segmented.jsx';
 import { PeriodChips } from './PeriodChips.jsx';
@@ -67,6 +67,19 @@ export function Dashboard() {
   const [toast, setToast] = useState({ msg: '', type: 'info' });
   const [pushing, setPushing] = useState(false);
   const [form, setForm] = useState(BLANK_FORM);
+
+  useEffect(() => {
+    async function syncFromSheets() {
+      try {
+        const rows = await pullRecords();
+        setRecords(rows);
+        saveRecords(rows);
+      } catch {
+        // network error or missing URL — localStorage cache already in state
+      }
+    }
+    syncFromSheets();
+  }, []);
 
   useEffect(() => { saveRecords(records); }, [records]);
 

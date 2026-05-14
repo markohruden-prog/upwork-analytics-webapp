@@ -1,12 +1,12 @@
-import { STORAGE_KEY, SEED_RECORDS } from './data.js';
+import { STORAGE_KEY } from './data.js';
 
 export function loadRecords() {
   try {
     const s = localStorage.getItem(STORAGE_KEY);
-    const data = s ? JSON.parse(s) : SEED_RECORDS;
-    return data.filter(r => r.period_start && r.profile !== 'all');
+    if (!s) return [];
+    return JSON.parse(s).filter(r => r.period_start && r.profile !== 'all');
   } catch {
-    return SEED_RECORDS;
+    return [];
   }
 }
 

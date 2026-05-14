@@ -9,3 +9,12 @@ export async function pushRecord(record) {
   });
   return res.json(); // { ok: true, action: 'inserted' | 'updated' }
 }
+
+// Fetches all weekly records from the Google Sheets webhook (Apps Script doGet).
+export async function pullRecords() {
+  const url = import.meta.env.VITE_SHEETS_WEBHOOK_URL;
+  if (!url) throw new Error('VITE_SHEETS_WEBHOOK_URL is not set');
+  const res = await fetch(url);
+  const rows = await res.json();
+  return rows.filter(r => r.period_start && r.profile !== 'all');
+}
